@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics;
@@ -43,7 +44,6 @@ namespace Littlenotes
 
             var dragRect = new Windows.Graphics.RectInt32(0, 0, newSize.Width, newSize.Height);
             window.AppWindow.TitleBar.SetDragRectangles([dragRect]);
-
         }
         private void NoteExit(object sender, global::Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {

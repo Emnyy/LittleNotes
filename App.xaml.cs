@@ -43,8 +43,27 @@ namespace Littlenotes
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            _window = new MainWindow();
+            //_window = new MainWindow();
+            //_window.Activate();
+            _window = new SettingsWindow();
             _window.Activate();
+
+            CreateFolder(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Notes"));
+        }
+        private static bool CreateFolder(string path)
+        {
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
