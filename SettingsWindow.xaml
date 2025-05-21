@@ -7,13 +7,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="SettingsWindow">
+    Title="Settings">
 
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
-
     <Grid>
+        <Pivot>
+            <PivotItem Header="General">
+                <TextBlock Text="all emails go here." />
+            </PivotItem>
 
+            <PivotItem Header="About">
+                <TextBlock Text="LittleNotes 1.0" />
+            </PivotItem>
+        </Pivot>
+        <Button x:Name="exit" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,24,24" Click="Exit" Padding="33,5,33,6"/>
     </Grid>
 </Window>

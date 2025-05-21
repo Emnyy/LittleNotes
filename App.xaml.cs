@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using System.Text.Json;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -47,8 +48,10 @@ namespace Littlenotes
             //_window.Activate();
             _window = new SettingsWindow();
             _window.Activate();
+            _window.AppWindow.SetIcon("Assets/Icon.ico");
 
-            CreateFolder(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Notes"));
+            string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Notes");
+            CreateFolder(path);
         }
         private static bool CreateFolder(string path)
         {
@@ -57,6 +60,22 @@ namespace Littlenotes
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
+                    CreateConfig(System.IO.Path.Combine(path, "settings.json"));
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        private static bool CreateConfig(string path)
+        {
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    File.Create(path).Close();
                 }
                 return true;
             }
