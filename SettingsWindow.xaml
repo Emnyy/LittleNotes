@@ -15,7 +15,10 @@
     <Grid>
         <Pivot>
             <PivotItem Header="General">
-                <TextBlock Text="all emails go here." />
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBox x:Name="CurrentFolder" Width="300" Margin="0,24,0,24" IsReadOnly="True"/>
+                    <Button x:Name="PickFolderButton" Content="Browse" Click="Browse" Margin="24,0,0,0"/>
+                </StackPanel>
             </PivotItem>
 
             <PivotItem Header="About">

@@ -16,6 +16,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -41,7 +42,8 @@ namespace Littlenotes
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
+        /// <param name="args">Details about the launch request and process.</param>   
+
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             //_window = new MainWindow();
@@ -49,40 +51,6 @@ namespace Littlenotes
             _window = new SettingsWindow();
             _window.Activate();
             _window.AppWindow.SetIcon("Assets/Icon.ico");
-
-            string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Notes");
-            CreateFolder(path);
-        }
-        private static bool CreateFolder(string path)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                    CreateConfig(System.IO.Path.Combine(path, "settings.json"));
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-        private static bool CreateConfig(string path)
-        {
-            try
-            {
-                if (!File.Exists(path))
-                {
-                    File.Create(path).Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
         }
     }
 }
