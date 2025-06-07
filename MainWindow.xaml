@@ -10,15 +10,15 @@
     Title="Littlenotes">
 
 
-    <StackPanel Background="{ThemeResource AccentFillColorDefaultBrush}">
-        <Border></Border>
-        <Grid>
-            <Border Padding="10" PointerPressed="NoteExit" PointerEntered="NoteHover" PointerExited="NoteHoverStop" HorizontalAlignment="Right">
-                <FontIcon x:Name="exit" Glyph="&#xE711;" FontSize="28" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" FontWeight="Bold"/>
-            </Border>
-            
-        </Grid>
-    </StackPanel>
+    <Grid Background="{ThemeResource AccentFillColorDefaultBrush}">
+        <Frame x:Name="MainFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition  />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+    </Grid>
 
     <Window.SystemBackdrop>
         <MicaBackdrop />

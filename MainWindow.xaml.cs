@@ -37,37 +37,17 @@ namespace Littlenotes
             window.AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Collapsed;
 
             var displayArea = DisplayArea.GetFromWindowId(window.AppWindow.Id, DisplayAreaFallback.Primary);
-            var wSize = 0.4 * displayArea.WorkArea.Height;
+            var wSize = 0.7 * displayArea.WorkArea.Height;
 
             var newSize = new Windows.Graphics.SizeInt32((int)(wSize), (int)(wSize));
             window.AppWindow.Resize(newSize);
 
-            var dragRect = new Windows.Graphics.RectInt32(0, 0, newSize.Width, newSize.Height);
-            window.AppWindow.TitleBar.SetDragRectangles([dragRect]);
-        }
-        private void NoteExit(object sender, global::Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            App.Current.Exit();
-        }
-        private void NoteHover(object sender, global::Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            if (sender is Border border && border.Child is FontIcon icon)
+            MainFrame.Navigate(typeof(MainPage));
+            if (MainFrame.Content is Page page)
             {
-                if (Application.Current.Resources["TextOnAccentFillColorSecondaryBrush"] is SolidColorBrush brush)
-                {
-                    icon.Foreground = new SolidColorBrush(brush.Color);
-                }
+                SetTitleBar(page.FindName("TopBar") as UIElement);
             }
         }
-        private void NoteHoverStop(object sender, global::Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            if (sender is Border border && border.Child is FontIcon icon)
-            {
-                if (Application.Current.Resources["TextOnAccentFillColorPrimaryBrush"] is SolidColorBrush brush)
-                {
-                    icon.Foreground = new SolidColorBrush(brush.Color);
-                }
-            }
-        }
+
     }
 }
